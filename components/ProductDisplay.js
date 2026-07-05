@@ -19,9 +19,7 @@ const productDisplay = {
             <p v-else>Out of Stock</p>
             <p>Shipping: {{shipping}}</p>
 
-            <ul>
-                <li v-for="detail in details">{{detail}}</li>
-            </ul>
+            
 
             <div
                 v-for="(variant,index) in variants"
@@ -63,11 +61,7 @@ const productDisplay = {
 
         const inventory = ref(100)
 
-        const details = ref([
-            '50% cotton',
-            '30% wool',
-            '20% polyester'
-        ])
+        
 
         const variants = ref([
             { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50 },
@@ -109,7 +103,6 @@ const productDisplay = {
             image,
             inStock,
             inventory,
-            details,
             variants,
             addToCart,
             updateImage,
@@ -117,4 +110,20 @@ const productDisplay = {
             shipping
         }
     }
+}
+
+const productDetails = {
+     template: `
+        <ul>
+            <li v-for="detail in details">
+                {{ detail }}
+            </li>
+        </ul>
+    `,
+
+    props: {
+        details: Array
+    }
+
+   
 }
