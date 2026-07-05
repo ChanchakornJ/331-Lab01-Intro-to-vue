@@ -36,6 +36,8 @@ const productDisplay = {
                 :class="{disabledButton: !inStock}">
                 Add To Cart
             </button>
+
+            <button class="button" @click="removeFromCart">Remove From Cart </button>
         </div>
     </div>
     `,
@@ -43,17 +45,12 @@ const productDisplay = {
     props: {
         premium: Boolean
     },
-    setup(props){
+    setup(props, {emit}){
+        
+          
         const product = ref('Boots')
 
-        
-         const shipping = computed(() =>{
-            if (props.premium){
-                return 'Free'
-            }else{
-                return 30
-            }
-        })
+     
         const brand = ref('SE 331')
 
         // const image = ref('./assets/images/socks_green.jpg')
@@ -87,7 +84,11 @@ const productDisplay = {
        
 
         function addToCart() {
-            cart.value += 1
+            emit('add-to-cart', variants.value[selectedVariant.value].id)
+        }
+        function removeFromCart(){
+            emit('remove-from-cart', variants.value[selectedVariant.value].id)
+        
         }
 
         const title = computed(() => {
@@ -105,9 +106,9 @@ const productDisplay = {
             inventory,
             variants,
             addToCart,
+            removeFromCart,
             updateImage,
-            updateVariant,
-            shipping
+            updateVariant
         }
     }
 }

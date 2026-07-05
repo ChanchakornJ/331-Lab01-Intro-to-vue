@@ -13,8 +13,14 @@
 <body>
     <div id="app">
         <div class ="nav-bar"></div>
-        <div class="cart">Cart {{ cart}}</div>
-        <product-display :premium="premium"></product-display>
+        <div class="cart">
+            <div v-for="id in [...new Set(cart)]" :key="id">
+                Product {{ id }}: {{ cart.filter(i => i === id).length }}       
+                
+            </div>
+           
+        </div>
+        <product-display :premium="premium" @add-to-cart="updateCart" @remove-from-cart="removeCart"></product-display>
         <product-details :details="details"></product-details>
        
 
