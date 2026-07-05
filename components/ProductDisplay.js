@@ -39,6 +39,8 @@ const productDisplay = {
 
             <button class="button" @click="removeFromCart">Remove From Cart </button>
         </div>
+        <review-list :reviews="reviews"></review-list>
+        <review-form @review-submitted="addReview"></review-form>
     </div>
     `,
 
@@ -49,6 +51,7 @@ const productDisplay = {
         
           
         const product = ref('Boots')
+        const reviews = ref([])
 
      
         const brand = ref('SE 331')
@@ -68,6 +71,10 @@ const productDisplay = {
         const selectedVariant = ref(0)
 
         const cart = ref(0)
+
+        function addReview(review){
+            reviews.value.push(review)
+        }
 
         function updateVariant(index) {
             selectedVariant.value = index;
