@@ -15,9 +15,20 @@ createApp({
             '20% polyester'
         ])
         const variants = ref([
-            {id: 2234, color: 'green', size: 'S,M,L'},
-            {id: 2235, color: 'blue',  size: 'S,M,L'}
+            {id: 2234, color: 'green', size: 'S,M,L', image:'./assets/images/socks_green.jpg'},
+            {id: 2235, color: 'blue',  size: 'S,M,L',  image:'./assets/images/socks_blue.jpg'}
         ])
+        const cart = ref(0)
+        
+        function addToCart(){
+            cart.value +=1
+        }
+        function  updateImage(variantImage){
+            image.value = variantImage
+        }
+        function toggleStock(){
+            inStock.value = !inStock.value
+        }
 
         return{
             product,
@@ -28,7 +39,11 @@ createApp({
             inventory,
             onSale,
             details,
-            variants
+            variants,
+            cart,
+            addToCart,
+            updateImage,
+            toggleStock
         }
 
         
