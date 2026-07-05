@@ -46,6 +46,10 @@ body {
   cursor: not-allowed;
 }
 
+.disabledImage{
+  filter: grayscale(80%)
+}
+
 h1 {
   font-size: 50px;
 }
@@ -164,6 +168,15 @@ textarea {
 ul {
   list-style-type: none;
 }
+
+.color-circle{
+  width: 50px;
+  height:50px;
+  margin-top: 8px;
+  border: 2px solid #d8d8d8;
+  border-radius: 50%;
+}
+
 
 @media only screen and (max-width: 600px) {
   .container {
