@@ -1,4 +1,5 @@
 
+
 const productDisplay = {
 
     template:
@@ -39,7 +40,7 @@ const productDisplay = {
 
             <button class="button" @click="removeFromCart">Remove From Cart </button>
         </div>
-        <review-list :reviews="reviews"></review-list>
+        <review-list v-if="reviews.length" :reviews="reviews"></review-list>
         <review-form @review-submitted="addReview"></review-form>
     </div>
     `,
@@ -70,7 +71,6 @@ const productDisplay = {
 
         const selectedVariant = ref(0)
 
-        const cart = ref(0)
 
         function addReview(review){
             reviews.value.push(review)
@@ -112,10 +112,12 @@ const productDisplay = {
             inStock,
             inventory,
             variants,
+            reviews,
             addToCart,
             removeFromCart,
             updateImage,
-            updateVariant
+            updateVariant,
+            addReview
         }
     }
 }

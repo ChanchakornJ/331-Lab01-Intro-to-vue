@@ -1,4 +1,3 @@
-const { createApp, ref, computed, reactive } = Vue
 const reviewForm = {
   template:
     /*html*/
@@ -9,6 +8,12 @@ const reviewForm = {
 
     <label for="review">Review:</label>
     <textarea id="review" v-model="form.review"></textarea>
+
+     <label for="review">Would you recommend this product?: </label>
+    <select id="recommend" v-model="form.recommend">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
 
     <label for="rating">Rating:</label>
     <select id="rating" v-model.number="form.rating">
@@ -21,21 +26,31 @@ const reviewForm = {
 
     <input class="button" type="submit" value="Submit">
   </form>`,
+
   setup(props,{emit}) {
+
     const form = reactive({
       name: '',
       review: '',
+      recommend: null,
       rating: null
     })
+    
     function onSubmit(){
+      if (form.name === '' || form.review === '' || form.recommend ===null || form.rating === null){
+        alert('Review is incomplete. Please fill out every field.')
+        return
+      }
         const productReview = {
             name: form.name,
             review: form.review,
+            recommend: form.recommend,
             rating: form.rating
         }
         emit('review-submitted', productReview)
         form.name = ''
         form.review = ''
+        form.recommend = null
         form.rating = null
     }
 
